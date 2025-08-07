@@ -9,14 +9,18 @@
     <style>
         :root {
             --primary: #2563eb;
-            --secondary: #1e40af;
+            --primary-dark: #1e40af;
             --accent: #3b82f6;
             --light: #f0f9ff;
             --dark: #0f172a;
             --gray: #64748b;
             --light-gray: #e2e8f0;
             --card-bg: #ffffff;
+            --success: #10b981;
+            --warning: #f59e0b;
+            --info: #0ea5e9;
             --shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+            --transition: all 0.3s ease;
         }
         
         * {
@@ -45,7 +49,7 @@
         }
         
         header {
-            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            background: linear-gradient(135deg, var(--primary), var(--primary-dark));
             color: white;
             padding: 45px 40px;
             position: relative;
@@ -88,7 +92,7 @@
             display: flex;
             align-items: center;
             gap: 8px;
-            transition: all 0.3s ease;
+            transition: var(--transition);
         }
         
         .contact-item a {
@@ -97,7 +101,7 @@
             display: flex;
             align-items: center;
             gap: 8px;
-            transition: all 0.2s ease;
+            transition: var(--transition);
         }
         
         .contact-item a:hover {
@@ -162,7 +166,7 @@
             padding: 22px;
             border-radius: 12px;
             box-shadow: var(--shadow);
-            transition: transform 0.3s ease;
+            transition: var(--transition);
         }
         
         .skill-category:hover {
@@ -170,7 +174,7 @@
         }
         
         .skill-category h3 {
-            color: var(--secondary);
+            color: var(--primary-dark);
             margin-bottom: 18px;
             font-size: 1.2rem;
             display: flex;
@@ -195,7 +199,7 @@
             font-size: 0.92rem;
             border: 1px solid var(--light-gray);
             box-shadow: 0 2px 5px rgba(0, 0, 0, 0.03);
-            transition: all 0.2s ease;
+            transition: var(--transition);
         }
         
         .skill-item:hover {
@@ -262,37 +266,72 @@
             background: var(--accent);
         }
         
-        .project {
-            margin-bottom: 30px;
-            padding-bottom: 30px;
-            border-bottom: 1px dashed var(--light-gray);
+        .projects-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(450px, 1fr));
+            gap: 30px;
         }
         
-        .project:last-child {
-            border-bottom: none;
-            padding-bottom: 0;
-            margin-bottom: 0;
+        .project-card {
+            background: var(--card-bg);
+            border-radius: 12px;
+            box-shadow: var(--shadow);
+            overflow: hidden;
+            transition: var(--transition);
+            border-top: 4px solid var(--primary);
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+        }
+        
+        .project-card:hover {
+            transform: translateY(-7px);
+            box-shadow: 0 12px 25px rgba(0, 0, 0, 0.12);
+        }
+        
+        .project-header {
+            padding: 22px 22px 15px;
+            border-bottom: 1px solid var(--light-gray);
         }
         
         .project-title {
-            font-weight: 700;
-            font-size: 1.2rem;
-            margin-bottom: 8px;
-            color: var(--secondary);
             display: flex;
             align-items: center;
-            gap: 10px;
+            gap: 12px;
+            margin-bottom: 12px;
         }
         
         .project-title i {
+            font-size: 1.4rem;
             color: var(--accent);
+            background: var(--light);
+            width: 45px;
+            height: 45px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        
+        .project-name {
+            font-weight: 700;
+            font-size: 1.2rem;
+            color: var(--dark);
+        }
+        
+        .project-period {
+            color: var(--gray);
+            font-size: 0.9rem;
+            margin-left: 57px;
+            margin-top: -5px;
+            margin-bottom: 15px;
         }
         
         .project-tech {
             display: flex;
             flex-wrap: wrap;
             gap: 8px;
-            margin: 15px 0;
+            margin-top: 10px;
         }
         
         .tech-badge {
@@ -301,7 +340,7 @@
             border-radius: 20px;
             font-size: 0.85rem;
             border: 1px solid var(--light-gray);
-            transition: all 0.2s ease;
+            transition: var(--transition);
         }
         
         .tech-badge:hover {
@@ -311,21 +350,27 @@
             border-color: var(--primary);
         }
         
+        .project-content {
+            padding: 20px 22px;
+            flex-grow: 1;
+        }
+        
         .project-desc {
-            margin-top: 10px;
-            padding-left: 20px;
+            list-style: none;
         }
         
         .project-desc li {
             margin-bottom: 12px;
             position: relative;
+            padding-left: 22px;
         }
         
         .project-desc li::before {
             content: '▹';
             position: absolute;
-            left: -18px;
+            left: 0;
             color: var(--accent);
+            font-weight: bold;
         }
         
         .certifications-container {
@@ -343,7 +388,7 @@
             border-radius: 12px;
             border-left: 4px solid var(--primary);
             box-shadow: var(--shadow);
-            transition: all 0.3s ease;
+            transition: var(--transition);
             text-decoration: none;
             color: var(--dark);
         }
@@ -385,11 +430,11 @@
             font-size: 0.9rem;
             text-decoration: none;
             font-weight: 500;
-            transition: all 0.2s ease;
+            transition: var(--transition);
         }
         
         .cert-link:hover {
-            color: var(--secondary);
+            color: var(--primary-dark);
             text-decoration: underline;
         }
         
@@ -442,8 +487,8 @@
             padding: 22px;
             border-radius: 12px;
             box-shadow: var(--shadow);
-            transition: transform 0.3s ease;
-            border-left: 4px solid #10b981;
+            transition: var(--transition);
+            border-left: 4px solid var(--success);
         }
         
         .open-source-item:hover {
@@ -465,6 +510,12 @@
             color: var(--primary);
             pointer-events: none;
             z-index: 0;
+        }
+        
+        @media (max-width: 992px) {
+            .projects-grid {
+                grid-template-columns: 1fr;
+            }
         }
         
         @media (max-width: 768px) {
@@ -491,12 +542,6 @@
             .company {
                 flex-direction: column;
                 gap: 8px;
-            }
-            
-            .project-title {
-                flex-direction: column;
-                align-items: flex-start;
-                gap: 5px;
             }
             
             .education {
@@ -549,6 +594,40 @@
             .watermark {
                 font-size: 3rem;
             }
+        }
+        
+        .project-type {
+            display: inline-block;
+            padding: 3px 10px;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            font-weight: 500;
+            margin-top: 5px;
+        }
+        
+        .project-saas {
+            background: rgba(16, 185, 129, 0.15);
+            color: var(--success);
+        }
+        
+        .project-ai {
+            background: rgba(59, 130, 246, 0.15);
+            color: var(--primary);
+        }
+        
+        .project-mobile {
+            background: rgba(245, 158, 11, 0.15);
+            color: var(--warning);
+        }
+        
+        .project-finance {
+            background: rgba(139, 92, 246, 0.15);
+            color: #8b5cf6;
+        }
+        
+        .project-hrms {
+            background: rgba(236, 72, 153, 0.15);
+            color: #ec4899;
         }
     </style>
 </head>
@@ -682,84 +761,201 @@
         
         <section class="section">
             <h2 class="section-title"><i class="fas fa-project-diagram"></i>KEY PROJECTS</h2>
-            <div class="project">
-                <div class="project-title">
-                    <i class="fas fa-calculator"></i>
-                    <span>Finycs – Cloud Accounting Software (2022 – Present)</span>
+            <div class="projects-grid">
+                <div class="project-card">
+                    <div class="project-header">
+                        <div class="project-title">
+                            <i class="fas fa-calculator"></i>
+                            <div>
+                                <div class="project-name">Finycs - Cloud Accounting Software</div>
+                                <div class="project-type project-saas">SaaS Platform</div>
+                            </div>
+                        </div>
+                        <div class="project-period">2022 – Present</div>
+                        <div class="project-tech">
+                            <span class="tech-badge">React.js</span>
+                            <span class="tech-badge">React Native</span>
+                            <span class="tech-badge">Redux</span>
+                            <span class="tech-badge">Tailwind CSS</span>
+                            <span class="tech-badge">Chart.js</span>
+                            <span class="tech-badge">Highcharts.js</span>
+                            <span class="tech-badge">PayU</span>
+                        </div>
+                    </div>
+                    <div class="project-content">
+                        <ul class="project-desc">
+                            <li>Built full web and mobile interfaces for global accounting SaaS with multi-currency support</li>
+                            <li>Developed real-time financial dashboards (P&L, cash flow) with customizable widgets</li>
+                            <li>Created Query Builder Tool for defining user-specific KPIs and metrics</li>
+                            <li>Integrated GST modules including E-Invoicing with IRN generation and E-Way Bills</li>
+                            <li>Implemented tax-inclusive subscription flows with plan toggles and PayU integration</li>
+                        </ul>
+                    </div>
                 </div>
-                <div class="project-tech">
-                    <span class="tech-badge">React.js</span>
-                    <span class="tech-badge">React Native</span>
-                    <span class="tech-badge">Redux</span>
-                    <span class="tech-badge">Tailwind CSS</span>
-                    <span class="tech-badge">REST APIs</span>
-                    <span class="tech-badge">PayU</span>
-                    <span class="tech-badge">Chart.js</span>
-                    <span class="tech-badge">Highcharts.js</span>
+                
+                <div class="project-card">
+                    <div class="project-header">
+                        <div class="project-title">
+                            <i class="fas fa-boxes"></i>
+                            <div>
+                                <div class="project-name">Inventory Management System</div>
+                                <div class="project-type project-finance">Finance & Logistics</div>
+                            </div>
+                        </div>
+                        <div class="project-period">2025 – Present</div>
+                        <div class="project-tech">
+                            <span class="tech-badge">Tauri</span>
+                            <span class="tech-badge">React.js</span>
+                            <span class="tech-badge">Rust</span>
+                            <span class="tech-badge">REST APIs</span>
+                        </div>
+                    </div>
+                    <div class="project-content">
+                        <ul class="project-desc">
+                            <li>Developed Tauri-based desktop inventory tool extending Finycs' item management</li>
+                            <li>Built Tally ERP sync app with real-time/manual triggers and status tracking</li>
+                            <li>Integrated Rust backend with React frontend via Tauri, improving sync speed</li>
+                            <li>Created comprehensive logging system for inventory tracking and reconciliation</li>
+                        </ul>
+                    </div>
                 </div>
-                <ul class="project-desc">
-                    <li>Built full web and mobile interfaces for a global accounting SaaS with multi-currency support</li>
-                    <li>Delivered real-time financial dashboards (P&L, cash flow) with customizable widgets</li>
-                    <li>Developed a Query Builder Tool for defining user-specific KPIs and metrics</li>
-                    <li>Integrated GST modules: E-Invoicing with IRN generation & PDF, E-Way Bills with automated logistics & tax prefills</li>
-                    <li>Implemented tax-inclusive subscription flows with plan toggles and PayU payment gateway</li>
-                </ul>
-            </div>
-            
-            <div class="project">
-                <div class="project-title">
-                    <i class="fas fa-boxes"></i>
-                    <span>Inventory Management System & Bridge App (2025 – Present)</span>
+                
+                <div class="project-card">
+                    <div class="project-header">
+                        <div class="project-title">
+                            <i class="fas fa-chart-line"></i>
+                            <div>
+                                <div class="project-name">Foundation AI - Analytics Dashboard</div>
+                                <div class="project-type project-ai">AI Platform</div>
+                            </div>
+                        </div>
+                        <div class="project-period">2023 – 2024</div>
+                        <div class="project-tech">
+                            <span class="tech-badge">React.js</span>
+                            <span class="tech-badge">Tailwind CSS</span>
+                            <span class="tech-badge">React Grid Layout</span>
+                            <span class="tech-badge">Keycloak</span>
+                            <span class="tech-badge">Jest</span>
+                        </div>
+                    </div>
+                    <div class="project-content">
+                        <ul class="project-desc">
+                            <li>Created drag-and-drop dashboards using react-grid-layout for flexible analytics</li>
+                            <li>Implemented Keycloak RBAC for user-specific layout persistence</li>
+                            <li>Built reusable UI components library for tables, pickers, and dropdowns</li>
+                            <li>Ensured frontend quality with comprehensive unit tests</li>
+                        </ul>
+                    </div>
                 </div>
-                <div class="project-tech">
-                    <span class="tech-badge">Tauri</span>
-                    <span class="tech-badge">React.js</span>
-                    <span class="tech-badge">Rust</span>
-                    <span class="tech-badge">REST APIs</span>
+                
+                <div class="project-card">
+                    <div class="project-header">
+                        <div class="project-title">
+                            <i class="fas fa-table"></i>
+                            <div>
+                                <div class="project-name">Foundation AI - Table Extraction UI</div>
+                                <div class="project-type project-ai">AI Platform</div>
+                            </div>
+                        </div>
+                        <div class="project-period">2023 – 2024</div>
+                        <div class="project-tech">
+                            <span class="tech-badge">React.js</span>
+                            <span class="tech-badge">Tailwind CSS</span>
+                            <span class="tech-badge">Context API</span>
+                            <span class="tech-badge">ReTool</span>
+                        </div>
+                    </div>
+                    <div class="project-content">
+                        <ul class="project-desc">
+                            <li>Designed Excel-style UI for validating AI-extracted tables with confidence scoring</li>
+                            <li>Added features for multi-table merging and validation thresholds</li>
+                            <li>Implemented real-time previews for document processing</li>
+                            <li>Streamlined legal data workflows, enhancing document processing speed and accuracy</li>
+                        </ul>
+                    </div>
                 </div>
-                <ul class="project-desc">
-                    <li>Developed a Tauri-based desktop inventory tool extending Finycs' item management module</li>
-                    <li>Built a Tally ERP sync app, supporting real-time/manual triggers, logs, and status tracking</li>
-                    <li>Integrated Rust backend with React frontend via Tauri, improving sync speed significantly</li>
-                </ul>
-            </div>
-            
-            <div class="project">
-                <div class="project-title">
-                    <i class="fas fa-chart-line"></i>
-                    <span>Foundation AI – Analytics Dashboard (2023 – 2024)</span>
+                
+                <div class="project-card">
+                    <div class="project-header">
+                        <div class="project-title">
+                            <i class="fas fa-book"></i>
+                            <div>
+                                <div class="project-name">Indian Constitution & Polity App</div>
+                                <div class="project-type project-mobile">Mobile Application</div>
+                            </div>
+                        </div>
+                        <div class="project-period">2022 – 2024</div>
+                        <div class="project-tech">
+                            <span class="tech-badge">React.js</span>
+                            <span class="tech-badge">React Native</span>
+                            <span class="tech-badge">Redux</span>
+                            <span class="tech-badge">SQLite</span>
+                        </div>
+                    </div>
+                    <div class="project-content">
+                        <ul class="project-desc">
+                            <li>Built cross-platform educational app for constitutional learning</li>
+                            <li>Developed offline access and text-to-speech features</li>
+                            <li>Implemented community annotation system</li>
+                            <li>Created knowledge graph UI for exploring article relationships</li>
+                        </ul>
+                    </div>
                 </div>
-                <div class="project-tech">
-                    <span class="tech-badge">React.js</span>
-                    <span class="tech-badge">Tailwind CSS</span>
-                    <span class="tech-badge">React Grid Layout</span>
-                    <span class="tech-badge">Keycloak</span>
-                    <span class="tech-badge">Chart.js</span>
-                    <span class="tech-badge">Jest</span>
+                
+                <div class="project-card">
+                    <div class="project-header">
+                        <div class="project-title">
+                            <i class="fas fa-tasks"></i>
+                            <div>
+                                <div class="project-name">Get It Done - HRMS & Task Management</div>
+                                <div class="project-type project-hrms">HRMS Platform</div>
+                            </div>
+                        </div>
+                        <div class="project-period">2022 – 2024</div>
+                        <div class="project-tech">
+                            <span class="tech-badge">React.js</span>
+                            <span class="tech-badge">Tailwind CSS</span>
+                            <span class="tech-badge">Firebase</span>
+                            <span class="tech-badge">Chart.js</span>
+                        </div>
+                    </div>
+                    <div class="project-content">
+                        <ul class="project-desc">
+                            <li>Created modules for Kanban task boards and team reviews</li>
+                            <li>Implemented gamified rewards system for task completion</li>
+                            <li>Integrated Firebase for real-time sync and authentication</li>
+                            <li>Developed dashboards for activity insights using Chart.js</li>
+                        </ul>
+                    </div>
                 </div>
-                <ul class="project-desc">
-                    <li>Created drag-and-drop dashboards using react-grid-layout for flexible analytics</li>
-                    <li>Implemented Keycloak RBAC for user-specific layout persistence and access control</li>
-                    <li>Built reusable UI components (tables, pickers, dropdowns) and ensured frontend quality with unit tests</li>
-                </ul>
-            </div>
-            
-            <div class="project">
-                <div class="project-title">
-                    <i class="fas fa-book"></i>
-                    <span>Indian Constitution & Polity App (2022 – 2024)</span>
+                
+                <div class="project-card">
+                    <div class="project-header">
+                        <div class="project-title">
+                            <i class="fas fa-file-invoice-dollar"></i>
+                            <div>
+                                <div class="project-name">Finalyze - Financial Analysis Platform</div>
+                                <div class="project-type project-finance">Finance Platform</div>
+                            </div>
+                        </div>
+                        <div class="project-period">2022</div>
+                        <div class="project-tech">
+                            <span class="tech-badge">React.js</span>
+                            <span class="tech-badge">Chart.js</span>
+                            <span class="tech-badge">Highcharts.js</span>
+                            <span class="tech-badge">Material UI</span>
+                            <span class="tech-badge">Express.js</span>
+                        </div>
+                    </div>
+                    <div class="project-content">
+                        <ul class="project-desc">
+                            <li>Built dashboards for multi-period comparisons across P&L, balance sheets, and financial ratios</li>
+                            <li>Enabled dynamic report generation, reducing manual efforts by 60%</li>
+                            <li>Created data visualization components for complex financial metrics</li>
+                            <li>Integrated with backend services for data processing and report delivery</li>
+                        </ul>
+                    </div>
                 </div>
-                <div class="project-tech">
-                    <span class="tech-badge">React.js</span>
-                    <span class="tech-badge">React Native</span>
-                    <span class="tech-badge">Redux</span>
-                    <span class="tech-badge">SQLite</span>
-                </div>
-                <ul class="project-desc">
-                    <li>Built a cross-platform educational app for constitutional learning</li>
-                    <li>Developed offline access, text-to-speech, and community annotation features</li>
-                    <li>Introduced a knowledge graph UI for exploring article relationships</li>
-                </ul>
             </div>
         </section>
         
@@ -849,7 +1045,7 @@
             <h2 class="section-title"><i class="fas fa-code-branch"></i>OPEN SOURCE & COMMUNITY</h2>
             <div class="open-source">
                 <div class="open-source-item">
-                    Published customizable Excel-like React Table component on npm
+                    Published a customizable Excel-like React Table component on npm
                 </div>
                 <div class="open-source-item">
                     Contributed to GitHub repositories on React performance and Tailwind UI patterns
